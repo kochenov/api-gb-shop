@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::apiResources([
-    //'product' => ProductController::class,
+    'product' => ProductController::class,
     'category' => CategoryController::class,
     //'cart' => CartController::class,
 ]);
