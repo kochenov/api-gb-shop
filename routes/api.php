@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +22,5 @@ use Illuminate\Support\Facades\Route;
 Route::apiResources([
     'product' => ProductController::class,
     'category' => CategoryController::class,
-    //'cart' => CartController::class,
+    'cart' => CartController::class,
 ]);
