@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraph(),
             'price' =>  $this->faker->randomFloat(2, 10, 5555),
             'images' => $this->faker->imageUrl(360, 420, 'Товар', true),
-            'category_id' => $this->faker->numberBetween(1, 20)
+            'category_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }

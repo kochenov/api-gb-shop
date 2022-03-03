@@ -10,6 +10,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $perPage = 5;
+
     public function category()
     {
         return $this->belongsTo(Category::class);
