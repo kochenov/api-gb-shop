@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Resources\CategoryResource;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -50,9 +49,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryStoreRequest $request, Category $category)
     {
-        //
+        $category->update($request->validated());
+
+        return $category;
     }
 
     /**
@@ -63,6 +64,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return response()->noContent();
     }
 }

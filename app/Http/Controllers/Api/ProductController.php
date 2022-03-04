@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductStoreRequest;
 use App\Http\Resources\ProductResource;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -25,9 +25,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
-        //
+        $new_product = Product::create($request->validated());
+        return new ProductResource($new_product);
     }
 
     /**
@@ -48,9 +49,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductStoreRequest $request, Product $product)
     {
-        //
+        $product->update($request->validated());
+
+        return $product;
     }
 
     /**
@@ -61,6 +64,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+
+        $product->delete();
+
+        return response()->noContent();
     }
 }
