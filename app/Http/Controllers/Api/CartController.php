@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Cart;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CartStoreRequest;
 use App\Http\Resources\CartResource;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -25,9 +25,11 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CartStoreRequest $request)
     {
-        //
+        $new_cart = Cart::create($request->validated());
+
+        return new CartResource($new_cart);
     }
 
     /**
@@ -48,9 +50,11 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(CartStoreRequest $request, Cart $cart)
     {
-        //
+        $cart->update($request->validated());
+
+        return $cart;
     }
 
     /**
@@ -61,6 +65,8 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        $cart->delete();
+
+        return response()->noContent();
     }
 }
